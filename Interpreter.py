@@ -15,7 +15,8 @@ def get_assembly_line(instruction_address_register):
 @staticmethod
 def get_instruction_register(assembly_line):
     if re.search("(OUTPUT)", assembly_line) or re.search("(0000)", assembly_line):
-        print("SÍ")
+        x = re.search("[1][0-6]|[1-9]", assembly_line)
+        print(x.group())
     elif re.search("(LOAD_A)", assembly_line) or re.search("(0001)", assembly_line):
         print("SÍ")
     elif re.search("(LOAD_B)", assembly_line) or re.search("(0010)", assembly_line):
@@ -48,4 +49,4 @@ def get_instruction_register(assembly_line):
         print("SÍ")
 
 
-get_instruction_register.__func__("OUTPUT A\n")
+get_instruction_register.__func__("OUTPUT 15\n")
