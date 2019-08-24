@@ -1,4 +1,5 @@
 import time
+import Interpreter
 
 
 class IntegratedCircuit:
@@ -43,9 +44,8 @@ class CU(IntegratedCircuit):
                        "the processor."
         self.clock = clock
 
-    @staticmethod
-    def fetch():
-        assembly_line = 0
+    def fetch(self):
+        assembly_line = Interpreter.get_assembly_line(self.instruction_address_register)
         return assembly_line
 
     def decode(self, assembly_line):
