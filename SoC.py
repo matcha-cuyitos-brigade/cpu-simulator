@@ -40,20 +40,14 @@ class SoC:
         for i in range(13, 29):
             self.ram.ram_array[j] = re.search(r"\d+(\.\d{0,9})?", list_of_bios_lines[i]).group()
             j += 1
-        return "true" in list_of_bios_lines[6], "true" in list_of_bios_lines[7],\
+        return "true" in list_of_bios_lines[6], "true" in list_of_bios_lines[7], \
                "true" in list_of_bios_lines[8], "true" in list_of_bios_lines[9]
 
     def run(self):
-        print("\nInitial state...")
+        print("\nInitial state:")
         self.ram.print_status()
         self.cpu.print_status()
         while self.cpu.cu.opcode != 15:
             self.cpu.cu.instruction_cycle(self.ram, self.cpu)
             self.ram.print_status()
             self.cpu.print_status()
-
-
-mysoc = SoC()
-print(mysoc.boot())
-mysoc.run()
-
