@@ -3,7 +3,7 @@ import re
 
 @staticmethod
 def get_assembly_line(instruction_address_register):
-    assembly_code = open(r"/Users/baroness/Google Drive/Documentos/2019 2/5 progra III - A/cpu-simulator/.code/ex1.code", "r")
+    assembly_code = open(r"/Users/baroness/Google Drive/Documentos/2019 2/5 progra III - A/cpu-simulator/.code/ex2.code", "r")
     list_of_lines = assembly_code.readlines()
     #print(list_of_lines)
 

@@ -70,7 +70,7 @@ class CU(IntegratedCircuit):
         return self.__dict__
 
     def print_status(self):
-        print("CU:  ", self.__dict__)
+        print("  CU:  ", self.__dict__)
 
     # -----------------------------------------------------------------------------------------------------------
 

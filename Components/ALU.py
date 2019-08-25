@@ -110,7 +110,7 @@ class ALU(IntegratedCircuit):
         return self.__dict__
 
     def print_status(self):
-        print("ALU: ", self.__dict__)
+        print("  ALU: ", self.__dict__)
 
 
 # myalu = ALU()
