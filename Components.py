@@ -9,11 +9,6 @@ class IntegratedCircuit:
         self.build_date = ''
         self.purpose = ''
 
-    def __init__(self, manufacturer, build_date, purpose):
-        self.manufacturer = manufacturer
-        self.build_date = build_date
-        self.purpose = purpose
-
 
 class ALU(IntegratedCircuit):
 
@@ -36,7 +31,9 @@ class CU(IntegratedCircuit):
     def __init__(self, clock):
         IntegratedCircuit.__init__(self)
         self.instruction_address_register = 0  # also known as program counter (PC)
-        self.opcode, self.operand_1, self.operand_2 = 0
+        self.opcode = 0
+        self.operand_1 = 0
+        self.operand_2 = 0
         self.instruction_register = [self.opcode, self.operand_1, self.operand_2]
         self.purpose = "The control unit (CU) is a component of a computer's central processing unit (CPU) that " \
                        "directs the operation of the processor. It tells the computer's memory, arithmetic and logic " \
@@ -45,11 +42,11 @@ class CU(IntegratedCircuit):
         self.clock = clock
 
     def fetch(self):
-        assembly_line = Interpreter.get_assembly_line(self.instruction_address_register)
+        assembly_line = Interpreter.get_assembly_line.__func__(self.instruction_address_register)
         return assembly_line
 
     def decode(self, assembly_line):
-        return self.opcode, self.operand_1, self.operand_2
+        return Interpreter.get_instruction_register.__func__(assembly_line)
 
     def execute(self):
         return
@@ -73,7 +70,7 @@ class CU(IntegratedCircuit):
             self.opcode, self.operand_1, self.operand_2 = self.decode(assembly_line)
             time.sleep(1 / self.clock)
             self.execute()
-        self.instruction_address_register += 1
+        #self.instruction_address_register += 1
 
 
 class CPU:
@@ -89,3 +86,7 @@ class CPU:
 class RAM:
     def __init__(self, ram_array):
         self.ram_array = ram_array
+
+
+micu = CU(-1)
+print(micu.decode(micu.fetch()))
