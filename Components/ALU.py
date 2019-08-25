@@ -79,7 +79,7 @@ class ALU(IntegratedCircuit):
 
     @output.setter
     def output(self, val):
-        self._output = val
+        self._output = int(val)
         print("Output: ", val)
 
     @property

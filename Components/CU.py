@@ -178,7 +178,7 @@ class CU(IntegratedCircuit):
         if self.clock == -1:
             assembly_line = self.fetch()
             self.decode(assembly_line)
-            self.execute()
+            self.execute(ram, cpu)
         elif self.clock == 0:
             input("[Debug mode] Press Enter to continue...")
             assembly_line = self.fetch()
@@ -192,7 +192,7 @@ class CU(IntegratedCircuit):
             time.sleep(1 / self.clock)
             self.decode(assembly_line)
             time.sleep(1 / self.clock)
-            self.execute()
+            self.execute(ram, cpu)
 
 # mycu = CU(0)
 # print(mycu.fetch())

@@ -6,7 +6,7 @@ import re
 class SoC:
     def __init__(self):
         self._cpu = CPU(0)
-        self._ram = RAM([6, 6, 0, 0, 0, 0, 0, 0, 0, 6, 6, 6, 6, 6, 6, 6])
+        self._ram = RAM([6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6])
 
     @property
     def cpu(self):
@@ -33,7 +33,7 @@ class SoC:
     def boot(self):
         bios = open("bios.yml", "r")
         list_of_bios_lines = bios.readlines()
-        self.cpu.cu.clock = re.search(r"[-]?[0-9]*\.?,?[0-9]+", list_of_bios_lines[2]).group()
+        self.cpu.cu.clock = float(re.search(r"[-]?[0-9]*\.?,?[0-9]+", list_of_bios_lines[2]).group())
 
         j = 0
         for i in range(13, 29):
@@ -43,13 +43,14 @@ class SoC:
                "true" in list_of_bios_lines[8], "true" in list_of_bios_lines[9]
 
     def run(self):
-        self.cpu.cu.instruction_cycle(self.ram, self.cpu)
+        while self.cpu.cu.opcode != 15:
+            self.cpu.cu.instruction_cycle(self.ram, self.cpu)
 
 
 mysoc = SoC()
 mysoc.cpu.print_status()
 mysoc.ram.print_status()
-# mysoc.run()
 print(mysoc.boot())
+mysoc.run()
 mysoc.cpu.print_status()
 mysoc.ram.print_status()
