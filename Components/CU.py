@@ -116,15 +116,19 @@ class CU(IntegratedCircuit):
             self.instruction_address_register += 1
 
         elif self.opcode == 4:  # immediate_read_a
+            cpu.register_a = self.operand_1
             self.instruction_address_register += 1
 
         elif self.opcode == 5:  # store_a
+            ram.ram_array[self.operand_1] = cpu.register_a
             self.instruction_address_register += 1
 
         elif self.opcode == 6:  # store_b
+            ram.ram_array[self.operand_1] = cpu.register_b
             self.instruction_address_register += 1
 
         elif self.opcode == 8:  # immediate_read_b
+            cpu.register_b = self.operand_1
             self.instruction_address_register += 1
 
         elif self.opcode in [9, 10]:  # add, sub
@@ -156,16 +160,19 @@ class CU(IntegratedCircuit):
             self.instruction_address_register += 1
 
         elif self.opcode == 11:  # jump
-            0
+            self.instruction_address_register = self.operand_1
+
         elif self.opcode == 12:  # jump_neg
-            0
+            if cpu.alu.flag_negative == 1:
+                self.instruction_address_register = self.operand_1
+
         elif self.opcode == 13:  # load_c
-            0
+            cpu.register_c = ram.ram_array[self.operand_1]
+            self.instruction_address_register += 1
+
         elif self.opcode == 14:  # store_d
-            0
-        elif self.opcode == 15:  # halt
-            0
-        return
+            ram.ram_array[self.operand_1] = cpu.register_d
+            self.instruction_address_register += 1
 
     def instruction_cycle(self, ram, cpu):
         if self.clock == -1:
@@ -187,10 +194,8 @@ class CU(IntegratedCircuit):
             time.sleep(1 / self.clock)
             self.execute()
 
-
 # mycu = CU(0)
 # print(mycu.fetch())
 # mycu.print_status()
 # mycu.decode(mycu.fetch())
 # mycu.print_status()
-
