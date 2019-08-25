@@ -1,29 +1,6 @@
-import time
+from Components import IntegratedCircuit
 import Interpreter
-
-
-class IntegratedCircuit:
-
-    def __init__(self):
-        self.manufacturer = ''
-        self.build_date = ''
-        self.purpose = ''
-
-
-class ALU(IntegratedCircuit):
-
-    def __init__(self):
-        IntegratedCircuit.__init__(self)
-        self.input_a = 0
-        self.input_b = 0
-        self.opcode = 0
-        self.output = 0
-        self.flag_overflow = 0
-        self.flag_zero = 0
-        self.flag_negative = 0
-        self.purpose = "An arithmetic logic unit (ALU) is a digital circuit used to perform arithmetic and logic " \
-                       "operations. It represents the fundamental building block of the central processing unit (CPU) " \
-                       "of a computer. "
+import time
 
 
 class CU(IntegratedCircuit):
@@ -46,23 +23,60 @@ class CU(IntegratedCircuit):
         return assembly_line
 
     def decode(self, assembly_line):
-        return Interpreter.get_instruction_register.__func__(assembly_line)
+        self.opcode, self.operand_1, self.operand_2 = Interpreter.get_instruction_register.__func__(assembly_line)
 
-    def execute(self):
+    def execute(self, alu, ram, register_a, register_b, register_c, register_d):
+        if self.opcode == 0:
+            alu.output = ram.ram_array[self.operand_1]
+            print(alu.output)
+            self.instruction_address_register += 1
+
+        elif self.opcode == 1:
+            register_a = ram.ram_array[self.operand_1]
+            self.instruction_address_register += 1
+
+        elif self.opcode == 2:
+            0
+        elif self.opcode == 3:
+            0
+        elif self.opcode == 4:
+            0
+        elif self.opcode == 5:
+            0
+        elif self.opcode == 6:
+            0
+        elif self.opcode == 7:
+            0
+        elif self.opcode == 8:
+            0
+        elif self.opcode == 9:
+            0
+        elif self.opcode == 10:
+            0
+        elif self.opcode == 11:
+            0
+        elif self.opcode == 12:
+            0
+        elif self.opcode == 13:
+            0
+        elif self.opcode == 14:
+            0
+        elif self.opcode == 15:
+            0
         return
 
-    def instruction_cycle(self):
+    def instruction_cycle(self, alu, ram, register_a, register_b, register_c, register_d):
         if self.clock == -1:
             assembly_line = self.fetch()
-            self.opcode, self.operand_1, self.operand_2 = self.decode(assembly_line)
+            self.decode(assembly_line)
             self.execute()
         elif self.clock == 0:
             input("[Debug mode] Press Enter to continue...")
             assembly_line = self.fetch()
             input("[Debug mode] Press Enter to continue...")
-            self.opcode, self.operand_1, self.operand_2 = self.decode(assembly_line)
+            self.decode(assembly_line)
             input("[Debug mode] Press Enter to continue...")
-            self.execute()
+            self.execute(alu, ram, register_a, register_b, register_c, register_d)
         else:
             time.sleep(1 / self.clock)
             assembly_line = self.fetch()
@@ -70,23 +84,4 @@ class CU(IntegratedCircuit):
             self.opcode, self.operand_1, self.operand_2 = self.decode(assembly_line)
             time.sleep(1 / self.clock)
             self.execute()
-        #self.instruction_address_register += 1
-
-
-class CPU:
-    def __init__(self, clock):
-        alu = ALU()
-        cu = CU(clock)
-        register_a = 0
-        register_b = 0
-        register_c = 0
-        register_d = 0
-
-
-class RAM:
-    def __init__(self, ram_array):
-        self.ram_array = ram_array
-
-
-micu = CU(-1)
-print(micu.decode(micu.fetch()))
+        # self.instruction_address_register += 1
