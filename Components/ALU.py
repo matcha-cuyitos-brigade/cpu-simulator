@@ -4,7 +4,6 @@ from Components.IntegratedCircuit import *
 class ALU(IntegratedCircuit):
 
     def __init__(self):
-        IntegratedCircuit.__init__(self)
         self._input_a = 0
         self._input_b = 0
         self._opcode = 0
@@ -12,6 +11,7 @@ class ALU(IntegratedCircuit):
         self._flag_overflow = 0
         self._flag_zero = 0
         self._flag_negative = 0
+        IntegratedCircuit.__init__(self)
         self._purpose = "An arithmetic logic unit (ALU) is a digital circuit used to perform arithmetic and logic " \
                         "operations. It represents the fundamental building block of the central processing unit " \
                         "(CPU) of a computer. "
@@ -80,6 +80,7 @@ class ALU(IntegratedCircuit):
     @output.setter
     def output(self, val):
         self._output = val
+        print("Output: ", val)
 
     @property
     def flag_overflow(self):
@@ -109,7 +110,7 @@ class ALU(IntegratedCircuit):
         return self.__dict__
 
     def print_status(self):
-        print(self.__dict__)
+        print("ALU: ", self.__dict__)
 
 
 # myalu = ALU()

@@ -55,4 +55,6 @@ class CPU:
         return self.__dict__
 
     def print_status(self):
-        print(self.__dict__)
+        print("CPU: ", self.__dict__)
+        self.alu.print_status()
+        self.cu.print_status()
