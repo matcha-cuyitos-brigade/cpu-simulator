@@ -14,4 +14,4 @@ class RAM:
         return self.__dict__
 
     def print_status(self):
-        print(self.__dict__)
+        print("RAM: ", self.__dict__)

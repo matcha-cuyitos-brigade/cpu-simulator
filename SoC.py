@@ -1,5 +1,6 @@
 from Components.CPU import *
 from Components.RAM import *
+import re
 
 
 class SoC:
@@ -30,12 +31,25 @@ class SoC:
         print(self.__dict__)
 
     def boot(self):
-        0
+        bios = open("bios.yml", "r")
+        list_of_bios_lines = bios.readlines()
+        self.cpu.cu.clock = re.search(r"[-]?[0-9]*\.?,?[0-9]+", list_of_bios_lines[2]).group()
+
+        j = 0
+        for i in range(13, 29):
+            self.ram.ram_array[j] = re.search(r"\d+(\.\d{0,9})?", list_of_bios_lines[i]).group()
+            j += 1
+        return "true" in list_of_bios_lines[6], "true" in list_of_bios_lines[7],\
+               "true" in list_of_bios_lines[8], "true" in list_of_bios_lines[9]
 
     def run(self):
         self.cpu.cu.instruction_cycle(self.ram, self.cpu)
 
+
 mysoc = SoC()
 mysoc.cpu.print_status()
-mysoc.run()
+mysoc.ram.print_status()
+# mysoc.run()
+print(mysoc.boot())
 mysoc.cpu.print_status()
+mysoc.ram.print_status()
