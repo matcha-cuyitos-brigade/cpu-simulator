@@ -113,15 +113,20 @@ class CU(IntegratedCircuit):
             elif self.operand_2 in ["D", "d"]:
                 self.operand_2 = cpu.register_d
             cpu.alu.calc(self.operand_1, self.operand_2, self.opcode)
+            self.instruction_address_register += 1
 
-        elif self.opcode == 4:
-            0
-        elif self.opcode == 5:
-            0
-        elif self.opcode == 6:
-            0
-        elif self.opcode == 8:
-            0
+        elif self.opcode == 4:  # immediate_read_a
+            self.instruction_address_register += 1
+
+        elif self.opcode == 5:  # store_a
+            self.instruction_address_register += 1
+
+        elif self.opcode == 6:  # store_b
+            self.instruction_address_register += 1
+
+        elif self.opcode == 8:  # immediate_read_b
+            self.instruction_address_register += 1
+
         elif self.opcode in [9, 10]:  # add, sub
             if self.operand_1 in ["A", "a"]:
                 self.operand_1 = cpu.register_a
@@ -148,16 +153,17 @@ class CU(IntegratedCircuit):
                 self.operand_2 = cpu.register_d
                 cpu.alu.calc(self.operand_1, self.operand_2, self.opcode)
                 cpu.register_d = cpu.alu.output
-            
-        elif self.opcode == 11:
+            self.instruction_address_register += 1
+
+        elif self.opcode == 11:  # jump
             0
-        elif self.opcode == 12:
+        elif self.opcode == 12:  # jump_neg
             0
-        elif self.opcode == 13:
+        elif self.opcode == 13:  # load_c
             0
-        elif self.opcode == 14:
+        elif self.opcode == 14:  # store_d
             0
-        elif self.opcode == 15:
+        elif self.opcode == 15:  # halt
             0
         return
 
