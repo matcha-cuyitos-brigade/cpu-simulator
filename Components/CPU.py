@@ -1,5 +1,5 @@
-from ALU import *
-from CU import *
+from Components.ALU import *
+from Components.CU import *
 
 
 class CPU:

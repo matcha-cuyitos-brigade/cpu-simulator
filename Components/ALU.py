@@ -1,4 +1,4 @@
-from IntegratedCircuit import *
+from Components.IntegratedCircuit import *
 
 
 class ALU(IntegratedCircuit):
@@ -112,8 +112,8 @@ class ALU(IntegratedCircuit):
         print(self.__dict__)
 
 
-myalu = ALU()
-print(myalu.__dict__)
-myalu.calc(3, 3, 9)
-print(myalu.__dict__)
-print(myalu.get_status())
+# myalu = ALU()
+# print(myalu.__dict__)
+# myalu.calc(3, 3, 9)
+# print(myalu.__dict__)
+# print(myalu.get_status())
