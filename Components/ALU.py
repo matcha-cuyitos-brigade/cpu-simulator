@@ -55,7 +55,7 @@ class ALU(IntegratedCircuit):
 
     @input_a.setter
     def input_a(self, val):
-        self._input_a = val
+        self._input_a = int(val)
 
     @property
     def input_b(self):
@@ -63,7 +63,7 @@ class ALU(IntegratedCircuit):
 
     @input_b.setter
     def input_b(self, val):
-        self._input_b = val
+        self._input_b = int(val)
 
     @property
     def opcode(self):
@@ -79,7 +79,7 @@ class ALU(IntegratedCircuit):
 
     @output.setter
     def output(self, val):
-        self._output = int(val)
+        self._output = abs(int(val))
         print("Output: ", val)
 
     @property

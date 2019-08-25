@@ -31,6 +31,7 @@ class SoC:
         print(self.__dict__)
 
     def boot(self):
+        print("Loading bios...")
         bios = open("bios.yml", "r")
         list_of_bios_lines = bios.readlines()
         self.cpu.cu.clock = float(re.search(r"[-]?[0-9]*\.?,?[0-9]+", list_of_bios_lines[2]).group())
@@ -43,14 +44,16 @@ class SoC:
                "true" in list_of_bios_lines[8], "true" in list_of_bios_lines[9]
 
     def run(self):
+        print("\nInitial state...")
+        self.ram.print_status()
+        self.cpu.print_status()
         while self.cpu.cu.opcode != 15:
             self.cpu.cu.instruction_cycle(self.ram, self.cpu)
+            self.ram.print_status()
+            self.cpu.print_status()
 
 
 mysoc = SoC()
-mysoc.cpu.print_status()
-mysoc.ram.print_status()
 print(mysoc.boot())
 mysoc.run()
-mysoc.cpu.print_status()
-mysoc.ram.print_status()
+

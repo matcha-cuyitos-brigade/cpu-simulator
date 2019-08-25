@@ -76,6 +76,7 @@ class CU(IntegratedCircuit):
 
     def fetch(self):
         assembly_line = Interpreter.get_assembly_line.__func__(self.instruction_address_register)
+        print("\n", assembly_line)
         return assembly_line
 
     def decode(self, assembly_line):
