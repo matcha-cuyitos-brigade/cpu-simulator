@@ -9,6 +9,7 @@
           <option value="Components.CPU.CU" />
           <option value="Components.CPU.ALU" />
           <option value="Components.CU.IntegratedCircuit" />
+          <option value="urllib2" />
         </list>
       </option>
     </inspection_tool>
