@@ -15,16 +15,16 @@ def get_assembly_line(instruction_address_register):
 @staticmethod
 def get_instruction_register(assembly_line):
     if re.search("(OUTPUT)", assembly_line) or re.search("(0000)", assembly_line):
-        operand_1 = re.search("[1][0-6]|[1-9]", assembly_line).group()
-        return 0, int(operand_1), 0
+        assembly_line = re.split("\s", assembly_line)
+        return 0, int(assembly_line[1]), 0
 
     elif re.search("(LOAD_A)", assembly_line) or re.search("(0001)", assembly_line):
-        operand_1 = re.search("[1][0-6]|[1-9]", assembly_line).group()
-        return 1, int(operand_1), 0
+        assembly_line = re.split("\s", assembly_line)
+        return 1, int(assembly_line[1]), 0
 
     elif re.search("(LOAD_B)", assembly_line) or re.search("(0010)", assembly_line):
-        operand_1 = re.search("[1][0-6]|[1-9]", assembly_line).group()
-        return 2, int(operand_1), 0
+        assembly_line = re.split("\s", assembly_line)
+        return 2, int(assembly_line[1]), 0
 
     elif re.search("(AND)", assembly_line) or re.search("(0011)", assembly_line):
         assembly_line = re.split("\s", assembly_line)
