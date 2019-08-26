@@ -3,34 +3,34 @@ import re
 
 @staticmethod
 def get_assembly_line(instruction_address_register):
-    assembly_code = open(r"/Users/baroness/Google Drive/Documentos/2019 2/5 progra III - A/cpu-simulator/.code/ex3.code", "r")
+    assembly_code = open(r"/Users/tirso/Desktop/cpu-simulator/.code/or.code", "r")
     list_of_lines = assembly_code.readlines()
-    #print(list_of_lines)
+    # print(list_of_lines)
 
     list_filtered = [x for x in list_of_lines if "#" not in x]
-    #print(list_filtered)
+    # print(list_filtered)
     return list_filtered[instruction_address_register]
 
 
 @staticmethod
 def get_instruction_register(assembly_line):
     if re.search("(OUTPUT)", assembly_line) or re.search("(0000)", assembly_line):
-        operand_1 = re.search("[1][0-6]|[1-9]", assembly_line).group()
-        return 0, int(operand_1), 0
+        assembly_line = re.split("\s", assembly_line)
+        return 0, int(assembly_line[1]), 0
 
     elif re.search("(LOAD_A)", assembly_line) or re.search("(0001)", assembly_line):
-        operand_1 = re.search("[1][0-6]|[1-9]", assembly_line).group()
-        return 1, int(operand_1), 0
+        assembly_line = re.split("\s", assembly_line)
+        return 1, int(assembly_line[1]), 0
 
     elif re.search("(LOAD_B)", assembly_line) or re.search("(0010)", assembly_line):
-        operand_1 = re.search("[1][0-6]|[1-9]", assembly_line).group()
-        return 2, int(operand_1), 0
+        assembly_line = re.split("\s", assembly_line)
+        return 2, int(assembly_line[1]), 0
 
     elif re.search("(AND)", assembly_line) or re.search("(0011)", assembly_line):
         assembly_line = re.split("\s", assembly_line)
         return 3, assembly_line[1], assembly_line[2]
 
-    elif re.search("(ILD_A)", assembly_line) or re.search("(0100)", assembly_line): #immediate load
+    elif re.search("(ILD_A)", assembly_line) or re.search("(0100)", assembly_line):  # immediate load
         assembly_line = re.split("\s", assembly_line)
         return 4, int(assembly_line[1]), 0
 
@@ -67,8 +67,8 @@ def get_instruction_register(assembly_line):
         return 12, int(assembly_line[1]), 0
 
     elif re.search("(LOAD_C)", assembly_line) or re.search("(1101)", assembly_line):
-        operand_1 = re.search("[1][0-6]|[1-9]", assembly_line).group()
-        return 13, int(operand_1), 0
+        assembly_line = re.split("\s", assembly_line)
+        return 13, int(assembly_line[1]), 0
 
     elif re.search("(STORE_D)", assembly_line) or re.search("(1110)", assembly_line):
         assembly_line = re.split("\s", assembly_line)
@@ -77,5 +77,4 @@ def get_instruction_register(assembly_line):
     elif re.search("(HALT)", assembly_line) or re.search("(1111)", assembly_line):
         return 15, 0, 0
 
-
-#get_instruction_register.__func__("AND A B\n")
+# get_instruction_register.__func__("AND A B\n")

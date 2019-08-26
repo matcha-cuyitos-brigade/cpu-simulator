@@ -1,0 +1,4 @@
+LOAD_A 0
+LOAD_B 1
+OR A B
+HALT
