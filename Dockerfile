@@ -1,7 +1,10 @@
-FROM python:3.6-jessie
-RUN apt update
+FROM python:3.7
 
-ENV STATIC_URL /static
-ENV STATIC_PATH /var/www/app/static
-COPY ./requirements.txt /var/www/requirements.txt
-RUN pip install -r /var/www/requirements.txt
+ADD source/ /source
+WORKDIR /source
+
+RUN apt update
+RUN pip install pipenv
+RUN pipenv install
+
+CMD ["pipenv", "run", "python3", "Simulator.py"]
