@@ -1,0 +1,13 @@
+# CLEAR REGIST
+# Puts "0" into reg A
+0100 0
+
+# Puts "0" into reg B
+1000 0
+
+# Store value in reg a into RAM
+STORE_A 0
+
+# Store value in RAM 0 into REG C
+LOAD_C 0
+HALT

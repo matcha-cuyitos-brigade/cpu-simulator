@@ -1,0 +1,22 @@
+## Set RAM values to 0
+# Puts "0" into reg A
+0100 0
+
+# Store value in reg a into RAM
+STORE_A 0
+STORE_A 1
+STORE_A 2
+STORE_A 3
+STORE_A 4
+STORE_A 5
+STORE_A 6
+STORE_A 7
+STORE_A 8
+STORE_A 9
+STORE_A 10
+STORE_A 11
+STORE_A 12
+STORE_A 13
+STORE_A 14
+STORE_A 15
+HALT

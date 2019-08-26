@@ -3,7 +3,7 @@ import re
 
 @staticmethod
 def get_assembly_line(instruction_address_register):
-    assembly_code = open(r"/Users/tirso/Desktop/cpu-simulator/.code/or.code", "r")
+    assembly_code = open(r"/Users/tirso/Desktop/cpu-simulator/.code/ex5.code", "r")
     list_of_lines = assembly_code.readlines()
     # print(list_of_lines)
 

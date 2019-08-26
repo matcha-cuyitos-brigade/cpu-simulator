@@ -1,4 +1,0 @@
-LOAD_A 8
-LOAD_B 12
-AND B A
-HALT

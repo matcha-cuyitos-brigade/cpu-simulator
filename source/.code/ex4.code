@@ -1,0 +1,7 @@
+# Puts RAM 8,12 into REG A,B
+LOAD_A 8
+LOAD_B 12
+
+# AND operand with B,A
+AND B A
+HALT
