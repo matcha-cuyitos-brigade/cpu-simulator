@@ -60,6 +60,7 @@ clone the repo to your computer using:
 git clone <git link>
 ```
 now, it is important that you have docker and you're using unix
+
 use the following commands to access the project and start the docker container
 
  ```bash
