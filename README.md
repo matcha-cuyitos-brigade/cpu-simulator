@@ -53,8 +53,30 @@ Random Access Memory
 
 ### Clock
 In charge of control the fetch-decode-execute cycle.
+***
+## How to run
+clone the repo to your computer using: 
+   ```bash
+git clone <git link>
+```
+now, it is important that you have docker and you're using unix
+use the following commands to access the project and start the docker container
 
+ ```bash
+cd cpu-simulator && bash start.sh
+```
+next, enter the following commands
+ ```bash
+cd cpu-simulator/source && pipenv run python3 SimulatorCLI.py
+```
+that commanmd runs CLI on a virtual environment, please note that you need to have pipenv installed
 
+if you wish to run it without docker and only using flask on a virtual environment, use this command:
+
+```bash
+cd cpu-simulator/source && pipenv run python3 Simulator.py
+```
+please note that you still need to have pipenv installed and use a unix based terminal.
 
 
 
