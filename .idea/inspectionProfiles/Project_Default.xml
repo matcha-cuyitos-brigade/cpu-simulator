@@ -10,6 +10,8 @@
           <option value="Components.CPU.ALU" />
           <option value="Components.CU.IntegratedCircuit" />
           <option value="urllib2" />
+          <option value="json" />
+          <option value="source.Simulator.*" />
         </list>
       </option>
     </inspection_tool>
